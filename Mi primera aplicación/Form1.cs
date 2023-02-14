@@ -14,7 +14,10 @@ namespace Mi_primera_aplicación
 
         private void button1_Click(object sender, EventArgs e)
         {
+            salida.Text = string.Empty;
+
             ObtenerUsuarioEquipo();
+            ObtenerUnidades();
         }
 
         private void ObtenerUsuarioEquipo() 
@@ -23,6 +26,23 @@ namespace Mi_primera_aplicación
             string dominio = SystemInformation.UserDomainName;
 
             salida.Text = "Usuario: " + usuario + Environment.NewLine + "Dominio o equipo: " + dominio;
+        }
+
+        private void ObtenerUnidades() 
+        {
+            DriveInfo[] drives = DriveInfo
+                .GetDrives()
+                .Where(a => a.DriveType == DriveType.Fixed)
+                .ToArray();
+
+            foreach (DriveInfo drive in drives) 
+            {
+                double espacioLibre = drive.TotalFreeSpace;
+                double espacioTotal = drive.TotalSize;
+
+                double espacioLibrePorcentaje = (espacioLibre/ espacioTotal) * 100;
+                salida.Text += Environment.NewLine + drive.Name + ": " + espacioLibrePorcentaje + "%" + Environment.NewLine;  
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
