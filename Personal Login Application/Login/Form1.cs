@@ -26,7 +26,7 @@ namespace Login
             {
                 result += Environment.NewLine + Environment.NewLine + "Su género no ha sido especificado.";
             }
-            result += Environment.NewLine + Environment.NewLine + "Su fecha de nacimiento es " + dateTimePicker1.Value.ToString("dd-MM-yyyy") + ".";
+            result += Environment.NewLine + Environment.NewLine + "Su fecha de nacimiento es " + dateTimePicker1.Value.ToString("dd/MM/yyyy") + ".";
             MessageBox.Show(result);
         }
     }
